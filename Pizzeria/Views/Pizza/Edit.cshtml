@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+    @model PizzaCategoriesView
+}
+
+<div class="container">
+    <form asp-controller="Pizza" asp-action="Edit" asp-route-id="@Model.Pizza.Id" method="post">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <h2>Stai modificando la pizza "@Model.Pizza.Name"</h2>
+            <label>Titolo:</label>
+            <input asp-for="Pizza.Name" type="text" class="form-control" placeholder="@Model .Name"/>
+            <span asp-validation-for="Pizza.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Descrizione:</label>
+            <textarea asp-for="Pizza.Description" class="d-block w-100" rows="8" placeholder="@Model.Pizza.Description"></textarea>
+            <span asp-validation-for="Pizza.Description" class="text-danger"></span>
+        </div>
+         <div class="mb-3">
+            <label>Categoria:</label>
+            <select asp-for="Pizza.CategoryId" rows="6" class="d-block w-100" placeholder="@Model.Pizza.Category.Title">
+                <option value=""></option>
+                @foreach (Category category in Model.Categories)
+                        {
+                            <option value="@category.Id">@category.Title</option>
+                }
+            </select>
+            <span asp-validation-for="Pizza.CategoryId" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Ingredienti:</label>
+            <select asp-for="IngredientsSelectedFromMultipleSelect" asp-items="@Model.Ingredients" multiple size="10" class="form-control mb-2 mr-sm-2 ml-sm-3 leftList">
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Url Immagine:</label>
+            <input asp-for="Pizza.Image" type="text" class="form-control" placeholder="@Model.Pizza.Image"/>
+            <span asp-validation-for="Pizza.Image" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Price (€):</label>
+            <input asp-for="Pizza.Price" type="text" class="form-control" placeholder="@Model.Pizza.Price" />
+            <span asp-validation-for="Pizza.Price" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Salva</button>
+    </form>
+</div>
