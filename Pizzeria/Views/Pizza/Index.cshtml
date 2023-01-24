@@ -2,7 +2,24 @@
     ViewData["Title"] = "Lista pizze";
     @model List<Pizza>
 }
+<div class="container"
+<div id="no_pizzas_div" class="row text-center d-none">
+    <div class="col-12">
+        <h3>There are no pizzas here!</h3>
+    </div>
+</div>
+<div id="pizzas_div" class="row d-none">
+    
+</div>
+</div>
 
+@section Scripts {
+
+    <script type="text/javascript">
+        
+    
+    </script>
+}
 
  <!-- @if(Model.Count == 0)
 {
